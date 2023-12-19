@@ -1,0 +1,14 @@
+<launch>
+    <arg name = "ocr_freq" default = "1" description = "Frequency at which frames are passed to the OCR model" />
+    <arg name = "ocr_thresh" default = "0.85" description = "Confidence threshold for the OCR model" />
+
+    <include file="$(find-pkg-share realsense2_camera)/launch/rs_launch.py" >
+    <arg name="depth_module.profile" value="1280x720x6" />
+    </include>
+
+    <node pkg="ocr" exec="ocr">
+        <param name="ocr_frequency" value="$(var ocr_freq)" />
+        <param name="ocr_threshold" value="$(var ocr_thresh)" />
+    </node>
+    <node pkg="ocr" exec="hangman"/>
+</launch>

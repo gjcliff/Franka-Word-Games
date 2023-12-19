@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+    <include file="$(find-pkg-share drawing)/drawing.launch.xml" >
+        <arg name="use_fake_hardware" value="false"/>
+        
+    </include>
+    <node pkg="drawing" exec="tags" name="tags"/>
+    <node pkg="drawing" exec="kickstart" name="kickstart"/>
+    <node pkg="drawing" exec="brain" name="brain"/>
+    <include file="$(find-pkg-share drawing)/ocr_game.launch.xml" >
+      <!-- <arg name="use_fake_hardware" value="false"/> -->
+      
+    </include>
+
+</launch>

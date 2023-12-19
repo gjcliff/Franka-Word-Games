@@ -1,0 +1,12 @@
+<launch>
+    <arg name = "ocr_freq" default = "0.5" description = "Frequency at which frames are passed to the OCR model" />
+    <arg name = "ocr_thresh" default = "0.5" description = "Confidence threshold for the OCR model" />
+
+    <node pkg="drawing" exec="paddle_ocr">
+        <param name="ocr_frequency" value="$(var ocr_freq)" />
+        <param name="ocr_threshold" value="$(var ocr_thresh)" />
+
+    </node>
+    <node pkg="drawing" exec="image_modification" name="image_modification"/>
+    <node pkg="drawing" exec="hangman" name="hangman"/>
+</launch>

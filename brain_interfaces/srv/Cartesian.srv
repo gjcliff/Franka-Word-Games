@@ -1,0 +1,7 @@
+# list of poses to be executed by the /compute_cartesian_motion service
+geometry_msgs/Pose[] poses
+float32 velocity
+bool replan
+bool[] use_force_control
+---
+#return empty

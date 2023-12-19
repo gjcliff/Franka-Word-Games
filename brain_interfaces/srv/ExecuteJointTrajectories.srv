@@ -1,0 +1,6 @@
+string state
+trajectory_msgs/JointTrajectory[] joint_trajectories
+geometry_msgs/Pose current_pose
+bool replan
+bool use_force_control
+---

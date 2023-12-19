@@ -1,0 +1,34 @@
+<launch>
+  <arg name="use_fake_hardware" default="true" description="Use fake hardware (true | false)" />
+
+  <group if="$(var use_fake_hardware)">
+    <include file="$(find-pkg-share franka_moveit_config)/launch/moveit.launch.py" >
+      <arg name="robot_ip" value="dont-care"/>
+      <arg name="use_fake_hardware" value="true"/>
+    </include>
+    <!-- <node pkg="read_ee_force" exec="read_ee_force" name="read_ee_force"/> -->
+  </group>
+
+  <group unless="$(var use_fake_hardware)">
+    <include file="$(find-pkg-share franka_moveit_config)/launch/moveit.launch.py" >
+      <arg name="robot_ip" value="panda0.robot"/>
+      
+    </include>
+    <include file="$(find-pkg-share drawing)/april_tag.launch.xml"></include>
+    <!-- <node pkg="read_ee_force" exec="read_ee_force" name="read_ee_force"/> -->
+  </group>
+  
+  <node pkg="drawing" exec="draw" name="Drawing">
+    <param name="use_fake_hardware" value="$(var use_fake_hardware)"/>
+    <param name="robot_name" value="panda"/>
+    <param name="group_name" value="panda_manipulator"/>
+    <param name="frame_id" value="panda_link0"/>
+    <param name="x_init" value="0.3"/>
+    <param name="y_init" value="0.0"/>
+  </node>
+
+  <node pkg="drawing" exec="executor" name="Execute"/>
+  <!-- <node pkg="drawing" exec="tags" name="tags"/>
+  <node pkg="drawing" exec="kickstart" name="kickstart"/> -->
+  
+</launch>

@@ -1,0 +1,4 @@
+geometry_msgs/Pose input_pose
+bool into_board
+---
+geometry_msgs/Pose output_pose

@@ -1,0 +1,33 @@
+<launch>
+
+  <arg name="rviz_config" default="view_camera.rviz" description ="path of the rviz file to launch" />
+  <arg name="remapped_image" default="/camera/color/image_raw" />
+  <arg name="remapped_camera_info" default="camera/color/camera_info" />
+<group>
+
+  <include file="$(find-pkg-share realsense2_camera)/launch/rs_launch.py" >
+    
+    <arg name="depth_module.profile" value="1280x720x6" />
+    <arg name="pointcloud.enable" value="true" />
+  </include>
+  <!-- <remap from="/camera/color/image_raw" to="image_raw"/> -->
+    <!-- <remap from="image_rect" to="image_rect_color"/> -->
+    <!-- <remap from="camera/color/camera_info" to="camera_info" /> -->
+</group>
+      
+
+      <include file="$(find-pkg-share drawing)/image_proc.launch.py">
+      </include>
+
+    <node pkg="apriltag_ros" exec="apriltag_node" name="apriltag">
+        <!-- <remap from="image_rect" to="/camera/color/image_raw"/> -->
+        <!-- <remap from="image_rect" to="image_rect_color"/> -->
+        <remap from="camera_info" to="camera/color/camera_info"/> 
+        
+       <param from="$(find-pkg-share drawing)/tag.yaml"/>
+       
+
+    </node>
+    <!-- <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share drawing)/$(var rviz_config)" name= 'rviz2'/> -->
+
+  </launch>
