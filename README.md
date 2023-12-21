@@ -1,4 +1,4 @@
-# ME495 Embedded Systems Final Project
+# Franka Word Games
 Team Members: Ananaya Agarwal, Graham Clifford, Ishani Narwankar, Abhishek Sankar, Srikanth Schelbert
 
 ## Project Overview
@@ -77,7 +77,7 @@ The following diagram illustrates the overall system design and showcases how di
 
 ## Lessons Learned
 1. OCR:
-
+s
     The PaddleOCR model comprises two layers: text detection and recognition. The detection layer searches for text in the image, identifying regions of interest, while the recognition layer identifies the text within these bounded regions, providing predictions with associated confidence values. Our tests indicate that the model struggles to reliably detect single characters in images, seemingly because it is trained on materials such as books and articles that feature large blocks of text. Consequently, it fails to produce accurate guesses in such scenarios. To address this issue, we disable the text detection feature in PaddleOCR and exclusively utilize its text recognition capability.
 
     We use OpenCV to modify the image before feeding it into PaddleOCR in order to improve accuracy:
@@ -126,4 +126,3 @@ Our final stretch goal that we would love to improve our project with is changin
 The following video showcases a full runthrough of our project. In it, we demonstrate the robot's ability to calibrate and determine the position of the board, run through the game setup sequence while using force control, and interact with the player and receive both single letter and full word guesses.
 
 [![Full Project Demo](https://img.youtube.com/vi/Q81Vcnj9kqs/0.jpg)](https://www.youtube.com/watch?v=Q81Vcnj9kqs "Full Project Demo")
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Q81Vcnj9kqs?si=IW1VO1uAep_BzxOy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
